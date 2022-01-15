@@ -20,4 +20,4 @@ RUN npm install --production
 COPY --from=builder /home/node/app/build ./build
 
 EXPOSE 3000
-CMD [ "node", "build/main.js", "--max-http-header-size=81000" ]
+CMD [ "node", "build/main.js", "--max-http-header-size=120000" ]

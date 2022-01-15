@@ -21,7 +21,8 @@ async function getResizedLogo(base64Image: string, w: number, h: number): Promis
 }
 
 async function getLogoBackground(resizedLogo: Jimp, scaleFactor: number): Promise<Jimp> {
-	return resizedLogo.clone().brightness(1).scale(scaleFactor);
+	return resizedLogo.clone().brightness(1).resize(resizedLogo.bitmap.width * scaleFactor, resizedLogo.bitmap.height * (scaleFactor + 0.21));
+	//scale(scaleFactor, Jimp.RESIZE_BILINEAR);
 }
 
 async function createQRCode(data: string, opt: QRCodeToBufferOptions): Promise<Jimp> {
@@ -38,7 +39,7 @@ export default async function generate({text, base64Image, opt, ratio = 2}: {
 }): Promise<Buffer> {
 	opt = {errorCorrectionLevel: 'medium', ...opt};
 
-	const bgScaleFactor = 1.14;
+	const bgScaleFactor = 1.1;
 
 	const img = await createQRCode(text, opt);
 	const logo = await getResizedLogo(

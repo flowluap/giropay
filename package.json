@@ -5,7 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "tsc --project './tsconfig.json'",
-    "dev": "ts-node-dev -T src/main.ts"
+    "dev": "node --max-http-header-size 200000 -r ts-node/register src/main.ts"
   },
   "repository": {
     "type": "git",
